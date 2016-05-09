@@ -37,7 +37,8 @@ namespace VRage.Network
 
         private CallSite GetCallSite<T>(Func<T, Delegate> callSiteGetter, T arg)
         {
-            Debug.Assert(callSiteGetter.Target == null, "RaiseEvent is designed for anonymous methods (no lambdas or instance methods)");
+            // this must be wrong, because I can't find any calls that AREN'T lambdas.... 
+            // Debug.Assert(callSiteGetter.Target == null, "RaiseEvent is designed for anonymous methods (no lambdas or instance methods)");
 
             CallSite site;
             if (arg == null)

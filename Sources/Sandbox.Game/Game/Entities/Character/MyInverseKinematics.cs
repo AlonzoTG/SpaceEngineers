@@ -361,12 +361,10 @@ namespace Sandbox.Game.Entities.Character
             //VRageRender.MyRenderProxy.DebugDrawSphere(Vector3D.Transform(desiredEnd, worldMatrix), 0.015f, Color.LightGoldenrodYellow, 1, false);
             Vector3 rootPos, curEnd;
             Vector3 curVector;
-            double cosAngle, turnAngle;
 
             int tries = 0;
             int maxTries = 50;
             float stopDistanceSq = 0.005f * 0.005f;
-            float gain = 0.65f;
 
             MyCharacterBone firstBone = characterBones[firstBoneIndex];
             MyCharacterBone secondBone = characterBones[secondBoneIndex];

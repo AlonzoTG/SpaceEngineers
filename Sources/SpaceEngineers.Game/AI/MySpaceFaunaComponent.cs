@@ -189,7 +189,6 @@ namespace SpaceEngineers.AI
             MyEntities.OnEntityRemove += EntityRemoved;
 
             MyAIComponent.Static.BotCreatedEvent += OnBotCreatedEvent;
-            MyCestmirDebugInputComponent.TestAction += EraseAllInfos;
 
             m_botCharacterDied = BotCharacterDied;
         }
@@ -204,10 +203,8 @@ namespace SpaceEngineers.AI
             MyEntities.OnEntityRemove -= EntityRemoved;
 
             MyAIComponent.Static.BotCreatedEvent += OnBotCreatedEvent;
-            MyCestmirDebugInputComponent.TestAction -= EraseAllInfos;
 
             m_botCharacterDied = null;
-
             m_planets.Clear();
         }
 

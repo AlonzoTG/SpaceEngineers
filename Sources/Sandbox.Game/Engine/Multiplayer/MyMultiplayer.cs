@@ -187,7 +187,7 @@ namespace Sandbox.Engine.Multiplayer
         /// <param name="targetEndpoint">Target of the event. When broadcasting, it's exclude endpoint.</param>
         public static void RaiseStaticEvent<T2, T3, T4>(Func<IMyEventOwner, Action<T2, T3, T4>> action, T2 arg2, T3 arg3, T4 arg4, EndpointId targetEndpoint = default(EndpointId))
         {
-            ReplicationLayer.RaiseEvent((IMyEventOwner)null, (IMyEventOwner)null, action, arg2, arg3, arg4, targetEndpoint);
+            ReplicationLayer.RaiseEvent(null, (IMyEventOwner)null, action, arg2, arg3, arg4, targetEndpoint);
         }
 
         /// <summary>

@@ -1714,7 +1714,7 @@ namespace Sandbox.Game.Multiplayer
 
             if (Sync.IsServer)
             {
-                MyMultiplayer.RaiseStaticEvent(s => MyPlayerCollection.OnIdentityCreated, addToNpcs, identity.IdentityId, identity.DisplayName);
+                MyMultiplayer.RaiseStaticEvent(s => OnIdentityCreated, addToNpcs, identity.IdentityId, identity.DisplayName);
             }
 
             var handler = IdentitiesChanged;

@@ -138,7 +138,7 @@ namespace VRageRender
         internal static void DrawEnvProbeQuad(float x, float y, float w, float h, int i)
         {
             RC.DeviceContext.PixelShader.Set(m_blitTextureShader);
-            
+
             RC.DeviceContext.PixelShader.SetShaderResource(0, MyEnvironmentProbe.Instance.cubemapPrefiltered.SubresourceSrv(i, 1));
 
             DrawQuad(x, y, w, h);
@@ -205,7 +205,7 @@ namespace VRageRender
 
             RC.BindDepthRT(null, DepthStencilAccess.ReadWrite, renderTarget);
             RC.BindGBufferForRead(0, MyGBuffer.Main);
-            
+
             //context.OutputMerger.SetTargets(null as DepthStencilView, MyRender.Backbuffer.RenderTarget);
 
             //context.PixelShader.SetShaderResources(0, MyRender.MainGbuffer.DepthGbufferViews);
@@ -216,7 +216,7 @@ namespace VRageRender
             RC.DeviceContext.InputAssembler.SetVertexBuffers(0, new VertexBufferBinding());
             RC.DeviceContext.InputAssembler.InputLayout = null;
 
-            if(MyRender11.Settings.DisplayGbufferColor)
+            if (MyRender11.Settings.DisplayGbufferColor)
             {
                 context.PixelShader.Set(m_baseColorShader);
                 MyScreenPass.DrawFullscreenQuad();
@@ -256,17 +256,17 @@ namespace VRageRender
                 context.PixelShader.Set(m_emissiveShader);
                 MyScreenPass.DrawFullscreenQuad();
             }
-            else if(MyRender11.Settings.DisplayAmbientDiffuse)
+            else if (MyRender11.Settings.DisplayAmbientDiffuse)
             {
                 context.PixelShader.Set(m_ambientDiffuseShader);
                 MyScreenPass.DrawFullscreenQuad();
             }
-            else if(MyRender11.Settings.DisplayAmbientSpecular)
+            else if (MyRender11.Settings.DisplayAmbientSpecular)
             {
                 context.PixelShader.Set(m_ambientSpecularShader);
                 MyScreenPass.DrawFullscreenQuad();
             }
-            else if(MyRender11.Settings.DisplayEdgeMask)
+            else if (MyRender11.Settings.DisplayEdgeMask)
             {
                 context.PixelShader.Set(m_edgeDebugShader);
                 MyScreenPass.DrawFullscreenQuad();
@@ -281,7 +281,7 @@ namespace VRageRender
                 context.PixelShader.Set(m_NDotLShader);
                 MyScreenPass.DrawFullscreenQuad();
             }
-            else if(MyRender11.Settings.DisplayDepth)
+            else if (MyRender11.Settings.DisplayDepth)
             {
                 context.PixelShader.Set(m_depthShader);
                 MyScreenPass.DrawFullscreenQuad();
@@ -378,13 +378,13 @@ namespace VRageRender
             //        } 
             //    }
 
-                
+
 
             //    batch.Commit();
             //}
 
             // draw lods
-            if(false)
+            if (false)
             {
                 var batch = MyLinesRenderer.CreateBatch();
 
@@ -401,28 +401,28 @@ namespace VRageRender
             }
         }
 
-       private static readonly Vector4[]  LOD_COLORS = 
-    {
-	new Vector4( 1, 0, 0, 1 ),
-	new Vector4(  0, 1, 0, 1 ),
-	new Vector4(  0, 0, 1, 1 ),
+        private static readonly Vector4[] LOD_COLORS =
+     {
+    new Vector4( 1, 0, 0, 1 ),
+    new Vector4(  0, 1, 0, 1 ),
+    new Vector4(  0, 0, 1, 1 ),
 
-	new Vector4(  1, 1, 0, 1 ),
-	new Vector4(  0, 1, 1, 1 ),
-	new Vector4(  1, 0, 1, 1 ),
+    new Vector4(  1, 1, 0, 1 ),
+    new Vector4(  0, 1, 1, 1 ),
+    new Vector4(  1, 0, 1, 1 ),
 
-	new Vector4(  0.5f, 0, 1, 1 ),
-	new Vector4(  0.5f, 1, 0, 1 ),
-	new Vector4(  1, 0, 0.5f, 1 ),
-	new Vector4(  0, 1, 0.5f, 1 ),
+    new Vector4(  0.5f, 0, 1, 1 ),
+    new Vector4(  0.5f, 1, 0, 1 ),
+    new Vector4(  1, 0, 0.5f, 1 ),
+    new Vector4(  0, 1, 0.5f, 1 ),
 
-	new Vector4(  1, 0.5f, 0, 1 ),
-	new Vector4(  0, 0.5f, 1, 1 ),
+    new Vector4(  1, 0.5f, 0, 1 ),
+    new Vector4(  0, 0.5f, 1, 1 ),
 
-	new Vector4(  0.5f, 1, 1, 1 ),
-	new Vector4(  1, 0.5f, 1, 1 ),
-	new Vector4(  1, 1, 0.5f, 1 ),
-	new Vector4(  0.5f, 0.5f, 1, 1 ),	
+    new Vector4(  0.5f, 1, 1, 1 ),
+    new Vector4(  1, 0.5f, 1, 1 ),
+    new Vector4(  1, 1, 0.5f, 1 ),
+    new Vector4(  0.5f, 0.5f, 1, 1 ),
 };
 
         internal static void DrawHierarchyDebug()
@@ -442,16 +442,18 @@ namespace VRageRender
                     Vector3 position;
                     uint ID;
 
-                    if(r!= null)
+                    if (r != null)
                     {
                         position = r.Owner.WorldMatrix.Translation;
                         ID = r.Owner.ID;
                     }
-                    else if(h != null) {
+                    else if (h != null)
+                    {
                         position = h.Owner.WorldMatrix.Translation;
                         ID = h.Owner.ID;
                     }
-                    else {
+                    else
+                    {
                         continue;
                     }
 
@@ -470,29 +472,29 @@ namespace VRageRender
                 }
             }
 
-            if(MyRender11.Settings.DisplayAabbs)
+            if (MyRender11.Settings.DisplayAabbs)
             {
-                foreach(var actor in MyActorFactory.GetAll())
+                foreach (var actor in MyActorFactory.GetAll())
                 {
                     var h = actor.GetGroupRoot();
                     var r = actor.GetRenderable();
 
-                    if(h != null)
+                    if (h != null)
                     {
                         var bb = BoundingBoxD.CreateInvalid();
 
                         foreach (var child in h.m_children)
                         {
-                            if(child.IsVisible)
-                            { 
+                            if (child.IsVisible)
+                            {
                                 bb.Include(child.Aabb);
                             }
                         }
 
                         batch.AddBoundingBox((BoundingBox)bb, Color.Red);
-                        MyPrimitivesRenderer.Draw6FacedConvexZ(bb.GetCorners().Select(x=>(Vector3)x).ToArray(), Color.Red, 0.1f);
+                        MyPrimitivesRenderer.Draw6FacedConvexZ(bb.GetCorners().Select(x => (Vector3)x).ToArray(), Color.Red, 0.1f);
                     }
-                    else if(r!=null && actor.GetGroupLeaf() == null)
+                    else if (r != null && actor.GetGroupLeaf() == null)
                     {
                         batch.AddBoundingBox((BoundingBox)r.Owner.Aabb, Color.Green);
                     }
@@ -521,96 +523,16 @@ namespace VRageRender
             ray.Direction = ray.Direction - ray.Position;
         }
 
-        static Matrix m_proj;
-        static Matrix m_vp;
-        static Matrix m_invvp;
-
         internal static void DrawSceneDebug()
         {
-            //if(true)
-            //{
-            //    //m_proj = MyEnvironment.Projection;
-            //    //m_vp = MyEnvironment.ViewProjection;
-            //    //m_invvp = MyEnvironment.InvViewProjection;
 
-            //    Vector2 groupDim = new Vector2(256, 256);
-            //    Vector2 tileScale = new Vector2(1600, 900) / (2 * groupDim);
-            //    Vector2 tileBias = tileScale - new Vector2(1, 1);
-
-
-            //    //Vector4 c1 = new Vector4(m_proj.M11 * tileScale.X, 0, tileBias.X, 0);
-            //    //Vector4 c2 = new Vector4(0, -m_proj.M22 * tileScale.Y, tileBias.Y, 0);
-            //    Vector4 c1 = new Vector4(m_proj.M11, 0, 0, 0);
-            //    Vector4 c2 = new Vector4(0, m_proj.M22, 0, 0);
-            //    Vector4 c4 = new Vector4(0, 0, 1, 0);
-
-            //    var frustumPlane0 = new VRageMath.Plane(c4 - c1);
-            //    var frustumPlane1 = new VRageMath.Plane(c4 + c1);
-            //    var frustumPlane2 = new VRageMath.Plane(c4 - c2);
-            //    var frustumPlane3 = new VRageMath.Plane(c4 + c2);
-            //    frustumPlane0.Normalize();
-            //    frustumPlane1.Normalize();
-            //    frustumPlane2.Normalize();
-            //    frustumPlane3.Normalize();
-
-
-            //    var ray0 = ComputeIntersectionLine(ref frustumPlane2, ref frustumPlane0);
-            //    var ray1 = ComputeIntersectionLine(ref frustumPlane1, ref frustumPlane2);
-            //    var ray2 = ComputeIntersectionLine(ref frustumPlane3, ref frustumPlane1);
-            //    var ray3 = ComputeIntersectionLine(ref frustumPlane0, ref frustumPlane3);
-
-
-            //    TransformRay(ref ray0, ref m_invvp);
-            //    TransformRay(ref ray1, ref m_invvp);
-            //    TransformRay(ref ray2, ref m_invvp);
-            //    TransformRay(ref ray3, ref m_invvp);
-
-
-            //    var batch = MyLinesRenderer.CreateBatch();
-
-            //    batch.Add(ray0.Position, ray0.Position + ray0.Direction * 100, Color.Red);
-            //    batch.Add(ray1.Position, ray1.Position + ray1.Direction * 100, Color.Red);
-            //    batch.Add(ray2.Position, ray2.Position + ray2.Direction * 100, Color.Red);
-            //    batch.Add(ray3.Position, ray3.Position + ray3.Direction * 100, Color.Red);
-
-            //    batch.AddFrustum(new BoundingFrustum(m_vp), Color.Green);
-
-            //    batch.Commit();
-                
-            //}
-
-            // draw lights
-            //if(false)
-            //{
-            //    MyLinesBatch batch = MyLinesRenderer.CreateBatch();
-
-            //    foreach (var light in MyLight.Collection)
-            //    {
-            //        if (light.PointLightEnabled)
-            //        {
-            //            var position = light.GetPosition();
-            //            //batch.AddBoundingBox(new BoundingBox(position - light.Pointlight.Range, position + light.Pointlight.Range), Color.Red);
-
-            //            batch.AddSphereRing(new BoundingSphere(position, light.Pointlight.Range), new Color(light.Pointlight.Color), Matrix.Identity);
-            //            batch.AddSphereRing(new BoundingSphere(position, light.Pointlight.Range), new Color(light.Pointlight.Color), Matrix.CreateRotationX((float)Math.PI * 0.5f));
-            //            batch.AddSphereRing(new BoundingSphere(position, light.Pointlight.Range), new Color(light.Pointlight.Color), Matrix.CreateRotationZ((float)Math.PI * 0.5f));
-
-            //            batch.AddSphereRing(new BoundingSphere(position, light.Pointlight.Radius), new Color(light.Pointlight.Color), Matrix.Identity);
-            //            batch.AddSphereRing(new BoundingSphere(position, light.Pointlight.Radius), new Color(light.Pointlight.Color), Matrix.CreateRotationX((float)Math.PI * 0.5f));
-            //        }
-            //    }
-
-            //    batch.Commit();
-            //}
-
-            //
             if (false)
             {
                 MyLinesBatch batch = MyLinesRenderer.CreateBatch();
 
-                foreach(var r in MyComponentFactory<MyRenderableComponent>.GetAll())
+                foreach (var r in MyComponentFactory<MyRenderableComponent>.GetAll())
                 {
-                    if(r.Owner.GetInstanceLod() != null)
+                    if (r.Owner.GetInstanceLod() != null)
                     {
                         batch.AddBoundingBox((BoundingBox)r.Owner.Aabb, Color.Blue);
                     }
@@ -629,7 +551,7 @@ namespace VRageRender
                 var colors = new[] { Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Pink, Color.MediumVioletRed };
 
                 var prevPositionG = Vector3.PositiveInfinity;
-                for(int i=0; i<4; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     float levelCellSize = cellSize * (float)Math.Pow(2, i);
                     var position = MyEnvironment.CameraPosition;
@@ -638,56 +560,32 @@ namespace VRageRender
                     var positionG = position.Snap(levelCellSize * 2);
 
                     float radiusMin = radius[i];
-                    float radiusMax = radius[i+1];
+                    float radiusMax = radius[i + 1];
 
                     // naive
 
                     var pmin = (positionG - radiusMax - levelCellSize * 2).Snap(levelCellSize * 2);
                     var pmax = (positionG + radiusMax + levelCellSize * 2).Snap(levelCellSize * 2);
 
-                    //if(i==0)
-                    //{
-                    //    for (var x = pmin.X; x < pmax.X; x += levelCellSize)
-                    //    {
-                    //        for (var y = pmin.Y; y < pmax.Y; y += levelCellSize)
-                    //        {
-                    //            for (var z = pmin.Z; z < pmax.Z; z += levelCellSize)
-                    //            {
-                    //                var cell = new Vector3(x, y, z);
-                    //                var rep = cell.Snap(levelCellSize * 2);
-
-                    //                var inLevelGrid = (rep - positionG).Length() < radiusMax;
-                    //                if(inLevelGrid)
-                    //                {
-                    //                    batch.AddBoundingBox(new BoundingBox(cell, cell + levelCellSize), colors[i]);
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //}
-                    //else 
-                    { 
-                        for (var x = pmin.X; x < pmax.X; x += levelCellSize)
+                    for (var x = pmin.X; x < pmax.X; x += levelCellSize)
+                    {
+                        for (var z = pmin.Z; z < pmax.Z; z += levelCellSize)
                         {
-                            for (var z = pmin.Z; z < pmax.Z; z += levelCellSize)
+                            var cell = new Vector3(x, positionG.Y, z);
+                            var rep = cell.Snap(levelCellSize * 2);
+
+                            var inPrevLevelGrid = (cell - prevPositionG).Length() < radiusMin;
+                            var inLevelGrid = (rep - positionG).Length() < radiusMax;
+
+                            if (inLevelGrid && !inPrevLevelGrid)
                             {
-                                var cell = new Vector3(x, positionG.Y, z);
-                                var rep = cell.Snap(levelCellSize * 2);
-
-                                var inPrevLevelGrid = (cell - prevPositionG).Length() < radiusMin;
-                                var inLevelGrid = (rep - positionG).Length() < radiusMax;
-
-                                if (inLevelGrid && !inPrevLevelGrid)
-                                {
-                                    batch.AddBoundingBox(new BoundingBox(cell, cell + levelCellSize), colors[i]);
-                                }
+                                batch.AddBoundingBox(new BoundingBox(cell, cell + levelCellSize), colors[i]);
                             }
                         }
                     }
 
                     prevPositionG = positionG;
                 }
-
 
                 batch.Commit();
             }
