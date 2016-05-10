@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using ProtoBuf;
 using Sandbox;
 using Sandbox.Definitions;
 using Sandbox.Engine.Multiplayer;
@@ -17,7 +16,6 @@ using Sandbox.Game.World;
 using Sandbox.Graphics.GUI;
 using SpaceEngineers.Game.Entities.Blocks;
 using SpaceEngineers.Game.GUI;
-using SteamSDK;
 using VRage.Collections;
 using VRage.Game;
 using VRage.Game.Components;
@@ -455,7 +453,7 @@ namespace SpaceEngineers.Game.World
                     resetIdentity = oldIdentity.FirstSpawnDone;
                 }
 
-                if (player == null)
+                if (player != null)
                 {
                     var identity = Sync.Players.CreateNewIdentity(player.DisplayName);
                     player = Sync.Players.CreateNewPlayer(identity, playerId, player.DisplayName);
@@ -862,7 +860,7 @@ namespace SpaceEngineers.Game.World
                 MyVoxelMap voxelMap = entity as MyVoxelMap;
 
                 // Only test against voxels
-                if (entity == null) continue;
+                if (voxelMap == null) continue;
 
                 distance = MathHelper.Max(distance, entity.PositionComp.WorldVolume.Center.Length() + entity.PositionComp.WorldVolume.Radius);
             }

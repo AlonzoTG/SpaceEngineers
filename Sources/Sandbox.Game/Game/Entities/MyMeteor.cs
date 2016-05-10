@@ -1,28 +1,22 @@
 ﻿using Havok;
-using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
 using Sandbox.Engine.Physics;
-using Sandbox.Engine.Utils;
 using Sandbox.Engine.Voxels;
 using Sandbox.Game.Components;
 using Sandbox.Game.Entities.Character;
 using Sandbox.Game.Entities.Cube;
 using Sandbox.Game.Entities.Debris;
 using Sandbox.Game.Multiplayer;
-using Sandbox.Game.Weapons;
 using Sandbox.Game.World;
 using Sandbox.Game.GameSystems;
 using Sandbox.ModAPI;
-using Sandbox.ModAPI.Interfaces;
 using System;
 using System.Linq;
 using System.Text;
 using VRage;
 using VRage.Utils;
 using VRageMath;
-using VRageRender;
 using VRage.Game.Components;
 using VRage.ObjectBuilders;
 using VRage.ModAPI;
@@ -374,7 +368,7 @@ namespace Sandbox.Game.Entities
 
                 m_soundEmitter.Update();
 
-                if (Sync.IsServer && MySandboxGame.TotalGamePlayTimeInMilliseconds - m_timeCreated > Math.Min(MAX_TRAJECTORY_LENGTH / MIN_SPEED, MAX_TRAJECTORY_LENGTH / Entity.Physics.LinearVelocity.Length()) * 1000)
+                if (Sync.IsServer && MySandboxGame.TotalGamePlayTimeInMilliseconds - m_timeCreated > (float)Math.Min(MAX_TRAJECTORY_LENGTH / MIN_SPEED, MAX_TRAJECTORY_LENGTH / Entity.Physics.LinearVelocity.Length()) * 1000)
                 {
                     CloseMeteorInternal();
                 }

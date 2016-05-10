@@ -58,11 +58,11 @@
   <ItemGroup>
     <Reference Include="HavokWrapper, Version=1.0.5877.23574, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\3rd\HavokWrapper_SE\debug\x64\HavokWrapper.dll</HintPath>
+      <HintPath>..\..\..\..\Projects\SpaceEngineers\3rd\HavokWrapper_SE\release\x86_64\HavokWrapper.dll</HintPath>
     </Reference>
     <Reference Include="SteamSDK">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\3rd\SteamSDK\$(Configuration)\$(Platform)\SteamSDK.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64\SteamSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

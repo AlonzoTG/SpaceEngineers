@@ -119,7 +119,8 @@ namespace VRageRender
 
             if (MyLightRendering.VisibleSpotlights.Count == 0)
                 OtherShadowsTriangleCounter = 0;
-            return;
+
+            // was cut here by return. , either run or delete the following code. =| 
             MyLightRendering.VisibleSpotlights.Sort(m_spotlightCastersComparer);
             MyArrayHelpers.Reserve(ref MyLightRendering.Spotlights, MyLightRendering.VisibleSpotlights.Count);
 

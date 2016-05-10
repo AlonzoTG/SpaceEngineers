@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using Havok;
-using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Definitions;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
-using Sandbox.Game.Entities.Character;
 using Sandbox.Game.Gui;
 using Sandbox.Game.Multiplayer;
-using Sandbox.Game.Weapons;
 using Sandbox.Game.World;
 using VRage.Utils;
 using VRageMath;
@@ -20,11 +15,7 @@ using VRageRender;
 using Sandbox.Graphics.GUI;
 
 using VRage;
-using Sandbox.Game.Localization;
-using Sandbox.Graphics;
-using VRage.ObjectBuilders;
 using VRage.ModAPI;
-using VRage.Network;
 using Sandbox.Engine.Multiplayer;
 using Sandbox.Game.GameSystems.CoordinateSystem;
 using VRage.Game;
@@ -540,7 +531,7 @@ namespace Sandbox.Game.Entities.Cube
             if (m_copiedGrids.Count == 0)
                 return false;
 
-            if ((m_copiedGrids.Count > 0) && !IsActive)
+            if (!IsActive)
             {
                 Activate();
                 return true;

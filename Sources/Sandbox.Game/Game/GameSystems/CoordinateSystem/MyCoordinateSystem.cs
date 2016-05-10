@@ -1,19 +1,14 @@
-﻿using Sandbox.Common;
-using Sandbox.Definitions;
-using Sandbox.Engine.Multiplayer;
+﻿using Sandbox.Engine.Multiplayer;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.Entities;
 using Sandbox.Game.Multiplayer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using VRage.Game;
 using VRage.Game.Components;
 using VRage.Game.Entity;
 using VRage.Game.ObjectBuilders.Components;
-using VRage.Library.Utils;
 using VRage.Network;
 using VRage.Serialization;
 using VRageMath;
@@ -544,11 +539,7 @@ namespace Sandbox.Game.GameSystems.CoordinateSystem
             {
                 this.m_drawBoundingBox = false;
             }
-            else if (this.m_selectedCoordSys != 0)// && this.m_lastSelectedCoordSys == 0)
-            {
-                this.m_drawBoundingBox = true;
-            }
-
+            else this.m_drawBoundingBox = true;
 
             if (m_drawBoundingBox)
             {

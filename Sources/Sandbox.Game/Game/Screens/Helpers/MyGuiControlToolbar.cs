@@ -6,7 +6,6 @@ using Sandbox.Graphics.GUI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using VRage;
 using VRage.Game;
@@ -527,7 +526,7 @@ namespace Sandbox.Game.Screens.Helpers
                 var item = toolbar.GetSlotItem(slot);
                 Debug.Assert(item is MyToolbarItemActions);
                 var actionsItem = item as MyToolbarItemActions;
-                if (item != null)
+                if (actionsItem != null)
                 {
                     //"Remove from toolbar" index (usually the last one)
                     if (idx < 0 || idx >= actionsItem.PossibleActions(ShownToolbar.ToolbarType).Count)

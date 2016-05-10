@@ -1,6 +1,4 @@
-﻿using Sandbox.Common;
-using Sandbox.Engine.Utils;
-using Sandbox.Game;
+﻿using Sandbox.Engine.Utils;
 using Sandbox.Game.World;
 using Sandbox.Graphics.GUI;
 using System;
@@ -110,7 +108,7 @@ namespace Sandbox.Engine.Platform.VideoMode
         {
             m_aspectRatios = new MyAspectRatio[MyUtils.GetMaxValueFromEnum<MyAspectRatioEnum>() + 1];
             Action<bool, MyAspectRatioEnum, float, string, bool> add =
-                delegate(bool isTripleHead, MyAspectRatioEnum aspectRatioEnum, float aspectRatioNumber, string textShort, bool isSupported)
+                delegate (bool isTripleHead, MyAspectRatioEnum aspectRatioEnum, float aspectRatioNumber, string textShort, bool isSupported)
             {
                 m_aspectRatios[(int)aspectRatioEnum] = new MyAspectRatio(isTripleHead, aspectRatioEnum, aspectRatioNumber, textShort, isSupported);
             };
@@ -152,21 +150,21 @@ namespace Sandbox.Engine.Platform.VideoMode
 
             var config = MySandboxGame.Config;
 
-            RunningGraphicsRenderer                                = config.GraphicsRenderer;
-            m_currentGraphicsSettings.GraphicsRenderer             = config.GraphicsRenderer;
-            m_currentGraphicsSettings.EnableDamageEffects          = config.EnableDamageEffects;
-            m_currentGraphicsSettings.FieldOfView                  = config.FieldOfView;
-            m_currentGraphicsSettings.HardwareCursor               = config.HardwareCursor;
-            m_currentGraphicsSettings.Render.InterpolationEnabled  = config.RenderInterpolation;
-            m_currentGraphicsSettings.Render.GrassDensityFactor    = config.GrassDensityFactor;
-            m_currentGraphicsSettings.Render.AntialiasingMode      = config.AntialiasingMode ?? DEFAULT_ANTI_ALIASING;
-            m_currentGraphicsSettings.Render.ShadowQuality         = config.ShadowQuality ?? DEFAULT_SHADOW_QUALITY;
+            RunningGraphicsRenderer = config.GraphicsRenderer;
+            m_currentGraphicsSettings.GraphicsRenderer = config.GraphicsRenderer;
+            m_currentGraphicsSettings.EnableDamageEffects = config.EnableDamageEffects;
+            m_currentGraphicsSettings.FieldOfView = config.FieldOfView;
+            m_currentGraphicsSettings.HardwareCursor = config.HardwareCursor;
+            m_currentGraphicsSettings.Render.InterpolationEnabled = config.RenderInterpolation;
+            m_currentGraphicsSettings.Render.GrassDensityFactor = config.GrassDensityFactor;
+            m_currentGraphicsSettings.Render.AntialiasingMode = config.AntialiasingMode ?? DEFAULT_ANTI_ALIASING;
+            m_currentGraphicsSettings.Render.ShadowQuality = config.ShadowQuality ?? DEFAULT_SHADOW_QUALITY;
             //m_currentGraphicsSettings.Render.TonemappingEnabled    = config.Tonemapping ?? DEFAULT_TONEMAPPING;
-            m_currentGraphicsSettings.Render.TextureQuality        = config.TextureQuality ?? DEFAULT_TEXTURE_QUALITY;
-            m_currentGraphicsSettings.Render.AnisotropicFiltering  = config.AnisotropicFiltering ?? DEFAULT_ANISOTROPIC_FILTERING;
-            m_currentGraphicsSettings.Render.FoliageDetails        = config.FoliageDetails ?? DEFAULT_FOLIAGE_DETAILS;
-            m_currentGraphicsSettings.Render.Dx9Quality            = config.Dx9RenderQuality ?? MyRenderQualityEnum.HIGH;
-            m_currentGraphicsSettings.Render.VoxelQuality          = config.VoxelQuality ?? MyRenderQualityEnum.HIGH;
+            m_currentGraphicsSettings.Render.TextureQuality = config.TextureQuality ?? DEFAULT_TEXTURE_QUALITY;
+            m_currentGraphicsSettings.Render.AnisotropicFiltering = config.AnisotropicFiltering ?? DEFAULT_ANISOTROPIC_FILTERING;
+            m_currentGraphicsSettings.Render.FoliageDetails = config.FoliageDetails ?? DEFAULT_FOLIAGE_DETAILS;
+            m_currentGraphicsSettings.Render.Dx9Quality = config.Dx9RenderQuality ?? MyRenderQualityEnum.HIGH;
+            m_currentGraphicsSettings.Render.VoxelQuality = config.VoxelQuality ?? MyRenderQualityEnum.HIGH;
 
             SetEnableDamageEffects(config.EnableDamageEffects);
             // Need to send both messages as I don't know which one will be used. One of them will be ignored.
@@ -183,12 +181,12 @@ namespace Sandbox.Engine.Platform.VideoMode
             {
                 return new MyRenderDeviceSettings()
                 {
-                    AdapterOrdinal   = videoAdapter.Value,
+                    AdapterOrdinal = videoAdapter.Value,
                     BackBufferHeight = screenHeight.Value,
-                    BackBufferWidth  = screenWidth.Value,
-                    RefreshRate      = config.RefreshRate,
-                    VSync            = config.VerticalSync,
-                    WindowMode       = config.WindowMode,
+                    BackBufferWidth = screenWidth.Value,
+                    RefreshRate = config.RefreshRate,
+                    VSync = config.VerticalSync,
+                    WindowMode = config.WindowMode,
                 };
             }
             else
@@ -263,7 +261,7 @@ namespace Sandbox.Engine.Platform.VideoMode
 
                 if (m_currentGraphicsSettings.Equals(ref settings))
                     return ChangeResult.NothingChanged;
-            
+
                 SetEnableDamageEffects(settings.EnableDamageEffects);
                 SetFov(settings.FieldOfView);
                 SetHardwareCursor(settings.HardwareCursor);
@@ -354,23 +352,19 @@ namespace Sandbox.Engine.Platform.VideoMode
             try
             {
                 ManagementObjectSearcher mosComputer = new System.Management.ManagementObjectSearcher("Select Manufacturer, Model from Win32_ComputerSystem");
-                if (mosComputer != null)
+
+                foreach (var item in mosComputer.Get())
                 {
-                    foreach (var item in mosComputer.Get())
-                    {
-                        MySandboxGame.Log.WriteLine("Win32_ComputerSystem.Manufacturer: " + item["Manufacturer"]);
-                        MySandboxGame.Log.WriteLine("Win32_ComputerSystem.Model: " + item["Model"]);
-                        MySandboxGame.Log.WriteLine("Virtualized: " + IsVirtualized(item["Manufacturer"].ToString(), item["Model"].ToString()));
-                    }
+                    MySandboxGame.Log.WriteLine("Win32_ComputerSystem.Manufacturer: " + item["Manufacturer"]);
+                    MySandboxGame.Log.WriteLine("Win32_ComputerSystem.Model: " + item["Model"]);
+                    MySandboxGame.Log.WriteLine("Virtualized: " + IsVirtualized(item["Manufacturer"].ToString(), item["Model"].ToString()));
                 }
 
                 ManagementObjectSearcher mos = new ManagementObjectSearcher("root\\CIMV2", "SELECT Name FROM Win32_Processor");
-                if (mos != null)
+
+                foreach (ManagementObject mo in mos.Get())
                 {
-                    foreach (ManagementObject mo in mos.Get())
-                    {
-                        MySandboxGame.Log.WriteLine("Environment.ProcessorName: " + mo["Name"]);
-                    }
+                    MySandboxGame.Log.WriteLine("Environment.ProcessorName: " + mo["Name"]);
                 }
 
                 //  Get info about memory
@@ -565,28 +559,28 @@ namespace Sandbox.Engine.Platform.VideoMode
         {
             var config = MySandboxGame.Config;
 
-            config.VideoAdapter        = m_currentDeviceSettings.AdapterOrdinal;
-            config.ScreenWidth         = m_currentDeviceSettings.BackBufferWidth;
-            config.ScreenHeight        = m_currentDeviceSettings.BackBufferHeight;
-            config.RefreshRate         = m_currentDeviceSettings.RefreshRate;
-            config.WindowMode          = m_currentDeviceSettings.WindowMode;
-            config.VerticalSync        = m_currentDeviceSettings.VSync;
-            config.HardwareCursor      = m_currentGraphicsSettings.HardwareCursor;
-            config.Dx9RenderQuality    = MyRenderConstants.RenderQualityProfile.RenderQuality;
-            config.FieldOfView         = m_currentGraphicsSettings.FieldOfView;
-            config.GraphicsRenderer    = m_currentGraphicsSettings.GraphicsRenderer;
+            config.VideoAdapter = m_currentDeviceSettings.AdapterOrdinal;
+            config.ScreenWidth = m_currentDeviceSettings.BackBufferWidth;
+            config.ScreenHeight = m_currentDeviceSettings.BackBufferHeight;
+            config.RefreshRate = m_currentDeviceSettings.RefreshRate;
+            config.WindowMode = m_currentDeviceSettings.WindowMode;
+            config.VerticalSync = m_currentDeviceSettings.VSync;
+            config.HardwareCursor = m_currentGraphicsSettings.HardwareCursor;
+            config.Dx9RenderQuality = MyRenderConstants.RenderQualityProfile.RenderQuality;
+            config.FieldOfView = m_currentGraphicsSettings.FieldOfView;
+            config.GraphicsRenderer = m_currentGraphicsSettings.GraphicsRenderer;
 
             // Don't want these to show up in configs for now
             var render = m_currentGraphicsSettings.Render;
-            config.RenderInterpolation    = render.InterpolationEnabled;
-            config.GrassDensityFactor     = render.GrassDensityFactor;
+            config.RenderInterpolation = render.InterpolationEnabled;
+            config.GrassDensityFactor = render.GrassDensityFactor;
             //config.Tonemapping            = render.TonemappingEnabled == DEFAULT_TONEMAPPING ? (bool?)null : render.TonemappingEnabled;
-            config.AntialiasingMode       = render.AntialiasingMode == DEFAULT_ANTI_ALIASING ? (MyAntialiasingMode?)null : render.AntialiasingMode;
-            config.ShadowQuality          = render.ShadowQuality == DEFAULT_SHADOW_QUALITY ? (MyShadowsQuality?)null : render.ShadowQuality;
-            config.TextureQuality         = render.TextureQuality == DEFAULT_TEXTURE_QUALITY ? (MyTextureQuality?)null : render.TextureQuality;
-            config.AnisotropicFiltering   = render.AnisotropicFiltering == DEFAULT_ANISOTROPIC_FILTERING ? (MyTextureAnisoFiltering?)null : render.AnisotropicFiltering;
-            config.FoliageDetails         = render.FoliageDetails == DEFAULT_FOLIAGE_DETAILS ? (MyFoliageDetails?)null : render.FoliageDetails;
-            config.VoxelQuality           = render.VoxelQuality == MyRenderQualityEnum.HIGH ? (MyRenderQualityEnum?)null : render.VoxelQuality;
+            config.AntialiasingMode = render.AntialiasingMode == DEFAULT_ANTI_ALIASING ? (MyAntialiasingMode?)null : render.AntialiasingMode;
+            config.ShadowQuality = render.ShadowQuality == DEFAULT_SHADOW_QUALITY ? (MyShadowsQuality?)null : render.ShadowQuality;
+            config.TextureQuality = render.TextureQuality == DEFAULT_TEXTURE_QUALITY ? (MyTextureQuality?)null : render.TextureQuality;
+            config.AnisotropicFiltering = render.AnisotropicFiltering == DEFAULT_ANISOTROPIC_FILTERING ? (MyTextureAnisoFiltering?)null : render.AnisotropicFiltering;
+            config.FoliageDetails = render.FoliageDetails == DEFAULT_FOLIAGE_DETAILS ? (MyFoliageDetails?)null : render.FoliageDetails;
+            config.VoxelQuality = render.VoxelQuality == MyRenderQualityEnum.HIGH ? (MyRenderQualityEnum?)null : render.VoxelQuality;
 
 
             config.LowMemSwitchToLow = MyConfig.LowMemSwitch.ARMED;

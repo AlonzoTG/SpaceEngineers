@@ -1,14 +1,9 @@
 ﻿using Sandbox.Engine.Multiplayer;
 using Sandbox.Game.GameSystems;
-using Sandbox.Game.Gui;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Game.World;
 using Sandbox.Graphics.GUI;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace Sandbox.Game.Screens
 {
@@ -29,8 +24,7 @@ namespace Sandbox.Game.Screens
             Debug.Assert(Sync.IsServer);
 
             MySession.Static.Settings.CanJoinRunning = false;
-            if (!MySession.Static.Settings.CanJoinRunning)
-                MyMultiplayer.Static.SetLobbyType(SteamSDK.LobbyTypeEnum.Private);
+            MyMultiplayer.Static.SetLobbyType(SteamSDK.LobbyTypeEnum.Private);
             MyScenarioSystem.Static.PrepareForStart();
             CloseScreen();
         }

@@ -332,10 +332,6 @@ namespace Sandbox.Game.Gui
                 return false;
             if (info.SubtypeName == null)
                 return false;
-            if (info.WorkshopId == null)
-                return false;
-            if (info.SteamIDOwner == null)
-                return false;
             return true;
         }
 
@@ -950,9 +946,7 @@ namespace Sandbox.Game.Gui
             else if(m_activeDetail)
             {
                 MyScreenManager.RemoveScreen(m_detailScreen);
-            }
-            else if (!m_activeDetail)
-            {
+            } else {
                 MyBlueprintItemInfo blueprintInfo = (m_selectedItem.UserData as MyBlueprintItemInfo);
                 if (blueprintInfo.Type == MyBlueprintTypeEnum.LOCAL)
                 {

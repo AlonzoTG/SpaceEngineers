@@ -1,5 +1,4 @@
-﻿using Sandbox.Engine.Platform;
-using Sandbox.Engine.Utils;
+﻿using Sandbox.Engine.Utils;
 using Sandbox.Game.Entities.Character;
 using Sandbox.Game.Gui;
 using Sandbox.Game.Weapons;
@@ -7,17 +6,11 @@ using Sandbox.Game.World;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using VRage;
 using VRage.Audio;
 using VRage.Utils;
-using VRage.Data;
 using VRageMath;
-using VRageRender;
-using VRage.Library.Utils;
 using VRage.Data.Audio;
-using Sandbox.Game.GameSystems;
 using VRage.Game.Entity;
 using Sandbox.Game.Audio;
 
@@ -75,9 +68,9 @@ namespace Sandbox.Game.Entities
                 else
                 {
                     if (m_arcade.IsNull)
-                        string.Format("Could not find arcade sound for '{0}'", cueName);
+                        MySandboxGame.Log.WriteLine(string.Format("Could not find arcade sound for '{0}'", cueName));
                     if (m_realistic.IsNull)
-                        string.Format("Could not find realistic sound for '{0}'", cueName);
+                        MySandboxGame.Log.WriteLine(string.Format("Could not find realistic sound for '{0}'", cueName));
                 }
             }
         }
@@ -438,7 +431,7 @@ namespace Sandbox.Game.Entities
                 else
                 {
                     if (MySession.Static.LocalCharacter != null && MySession.Static.LocalCharacter.SoundComp != null &&
-                        MySession.Static.LocalCharacter.SoundComp.StandingOnVoxel as MyVoxelBase == Entity as MyVoxelBase)
+                        MySession.Static.LocalCharacter.SoundComp.StandingOnVoxel as MyVoxelBase == Entity)
                         return true;
                 }
             }

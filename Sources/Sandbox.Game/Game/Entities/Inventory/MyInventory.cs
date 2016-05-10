@@ -3,8 +3,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using Sandbox.Common.ObjectBuilders;
 using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
 using VRage.Utils;
@@ -16,7 +14,6 @@ using Sandbox.Game.Entities.Character;
 using VRage;
 using VRage.ObjectBuilders;
 using VRage.Game.Components;
-using Sandbox.ModAPI.Interfaces;
 using VRage.Game.ObjectBuilders.ComponentSystem;
 using Sandbox.Game.Entities.Inventory;
 using Sandbox.Game.Gui;
@@ -24,13 +21,8 @@ using VRage.ModAPI;
 using Sandbox.Game.Entities.Cube;
 using VRage.Library.Utils;
 using VRage.Network;
-using VRage.Library.Collections;
 using Sandbox.Engine.Multiplayer;
-using Sandbox.Game.Screens.Helpers;
 using Sandbox.Game.Components;
-using VRage.Serialization;
-using Sandbox.Game.Replication;
-using Sandbox.Common;
 using Sandbox.Engine.Utils;
 using VRage.Library.Sync;
 using VRage.Game.Entity;
@@ -758,11 +750,9 @@ namespace Sandbox.Game
 
             OnBeforeContentsChanged();
 
-            MyFixedPoint maxStack = MyFixedPoint.MaxValue;
-
             var adapter = MyInventoryItemAdapter.Static;
             adapter.Adapt(objectBuilder.GetObjectId());
-            maxStack = adapter.MaxStackAmount;
+            MyFixedPoint maxStack = adapter.MaxStackAmount;
 
             // If this object can't even stack with itself, the max stack size would be 1
             bool canStackSelf = objectBuilder.CanStack(objectBuilder);
@@ -971,23 +961,13 @@ namespace Sandbox.Game
                 {
                     if (spawn)
                     {
-                        MyEntity owner;
-                        if (Owner is MyEntity)
-                        {
-                            owner = Owner as MyEntity;
-                        }
-                        else
-                        {
-                            owner = Container.Entity as MyEntity;
-                        }
-
                         if (!spawnPos.HasValue)
-                            spawnPos = MatrixD.CreateWorld(owner.PositionComp.GetPosition() + owner.PositionComp.WorldMatrix.Forward + owner.PositionComp.WorldMatrix.Up, owner.PositionComp.WorldMatrix.Forward, owner.PositionComp.WorldMatrix.Up);
-                        spawned = item.Value.Spawn(am, spawnPos.Value, owner);
+                            spawnPos = MatrixD.CreateWorld(Owner.PositionComp.GetPosition() + Owner.PositionComp.WorldMatrix.Forward + Owner.PositionComp.WorldMatrix.Up, Owner.PositionComp.WorldMatrix.Forward, Owner.PositionComp.WorldMatrix.Up);
+                        spawned = item.Value.Spawn(am, spawnPos.Value, Owner);
 
                         if (spawned != null && spawnPos.HasValue)
                         {
-                            if (owner == MySession.Static.LocalCharacter)
+                            if (Owner == MySession.Static.LocalCharacter)
                             {
                                 MyGuiAudio.PlaySound(MyGuiSounds.PlayDropItem);
                             }
@@ -1345,7 +1325,7 @@ namespace Sandbox.Game
                 {
                     if (spawn)
                     {
-                        MyEntity e = (dst.Owner as MyEntity);
+                        MyEntity e = (dst.Owner);
                         Matrix m = e.WorldMatrix;
                         MyFloatingObjects.Spawn(new MyPhysicalInventoryItem(remove - space, srcItem.Value.Content), e.PositionComp.GetPosition() + m.Forward + m.Up, m.Forward, m.Up, e.Physics);
                     }
@@ -1938,7 +1918,7 @@ namespace Sandbox.Game
             if (!MyEntities.EntityExists(destinationOwnerId)) return;
 
             var destOwner = MyEntities.GetEntityById(destinationOwnerId);
-            MyInventory dst = destOwner.GetInventory(destInventoryIndex) as MyInventory;
+            MyInventory dst = destOwner.GetInventory(destInventoryIndex);
 
             MyInventory.TransferItemsInternal(this, dst, itemId, false, destinationIndex, amount);
         }

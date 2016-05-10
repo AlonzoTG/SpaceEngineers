@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using Havok;
-using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
 using Sandbox.Definitions;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.GUI;
 using Sandbox.Game.World;
-using Sandbox.Graphics;
 using VRageMath;
 using VRageRender;
-using VRage.ModAPI;
 using VRage;
-using VRage.Library.Utils;
 using VRage.Game.Entity;
 using VRage.Game;
 
@@ -746,7 +738,7 @@ namespace Sandbox.Game.Entities.Cube
                                 bool smallStaticGrid = grid.GridSizeEnum == MyCubeSize.Small && grid.IsStatic;
                                 if (smallStaticGrid || !grid.IsStatic)
                                 {
-                                    var settings = i == 0 ? m_settings.GetGridPlacementSettings(grid, false) : MyPerGameSettings.BuildingSettings.SmallStaticGrid;
+                                    var settings = m_settings.GetGridPlacementSettings(grid, false);
                                     bool localRetVal = true;
 
                                     foreach (var block in grid.CubeBlocks)
@@ -764,7 +756,7 @@ namespace Sandbox.Game.Entities.Cube
                                 }
                                 else if (m_touchingGrids[i] == null)
                                 {
-                                    var settings = m_settings.GetGridPlacementSettings(grid, i == 0 ? true : grid.IsStatic);
+                                    var settings = m_settings.GetGridPlacementSettings(grid, true);
 
                                     MyCubeGrid touchingGridLocal = null;
 

@@ -1,6 +1,5 @@
 ﻿#region Using
 using Havok;
-using Sandbox.Common;
 using Sandbox.Definitions;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
@@ -11,8 +10,6 @@ using Sandbox.Game.GUI;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Game.Screens.Helpers;
 using Sandbox.Game.World;
-using Sandbox.ModAPI;
-using Sandbox.ModAPI.Interfaces;
 using System;
 using System.Text;
 using VRage;
@@ -374,7 +371,7 @@ namespace Sandbox.Game.Entities
             {
                 System.Diagnostics.Debug.Assert((user.GetInventory() as MyInventory) != null, "Null or unexpected inventory type returned!");
 
-                MyFixedPoint amount = MyFixedPoint.Min(Item.Amount, (user.GetInventory() as MyInventory).ComputeAmountThatFits(Item.Content.GetId()));
+                MyFixedPoint amount = MyFixedPoint.Min(Item.Amount, user.GetInventory().ComputeAmountThatFits(Item.Content.GetId()));
                 if (amount == 0)
                 {
                     if (MySandboxGame.TotalGamePlayTimeInMilliseconds - m_lastTimePlayedSound > 2500)
@@ -394,8 +391,8 @@ namespace Sandbox.Game.Entities
                         MyGuiAudio.PlaySound(MyGuiSounds.PlayTakeItem);
                         lastTimeSound = DateTime.UtcNow;
                     }
-                    System.Diagnostics.Debug.Assert((user.GetInventory() as MyInventory) != null, "Null or unexpected inventory type returned");
-                    (user.GetInventory() as MyInventory).PickupItem(this, amount);
+                    System.Diagnostics.Debug.Assert(user.GetInventory() != null, "Null or unexpected inventory type returned");
+                    user.GetInventory().PickupItem(this, amount);
                 }
 
                 MyHud.Notifications.ReloadTexts();

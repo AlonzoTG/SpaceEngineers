@@ -9,16 +9,12 @@ using ParallelTasks;
 using Sandbox.Graphics.GUI;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.Gui;
-using Sandbox.Game.World;
 using SteamSDK;
 
 using VRage.Utils;
 using System.Diagnostics;
-using Sandbox.Common.ObjectBuilders;
 using VRage.Compression;
 using Sandbox.Game;
-using Sandbox.Game.Localization;
-using VRage.Library.Utils;
 using VRage.FileSystem;
 using VRage.Game;
 using VRage.ObjectBuilders;
@@ -895,7 +891,7 @@ namespace Sandbox.Engine.Networking
                 mrEvent.WaitOne();
             }
 
-            if (m_stop)
+            if (m_stop)  // not redundant, checking for update from UI thread. 
                 return false;
 
             if (!downloadSuccess)

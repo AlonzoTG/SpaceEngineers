@@ -170,6 +170,7 @@ namespace VRageMath
                     }
                     else
                         result = new double?(0.0f);
+                    return;
                 }
                 result = new double?(intersection);
             }

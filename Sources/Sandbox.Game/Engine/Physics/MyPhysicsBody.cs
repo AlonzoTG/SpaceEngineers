@@ -3,24 +3,16 @@
 #region Using
 
 using System.Diagnostics;
-using Sandbox.Engine.Physics;
 using VRageMath;
 
 using Sandbox.Game.Entities;
 using Sandbox.Engine.Utils;
 using VRage.Utils;
-using System.Linq;
 using System.Collections.Generic;
 
 using VRageRender;
-using Sandbox.AppCode.Game;
-using Sandbox.Game.Utils;
-using Sandbox.Engine.Models;
 using Havok;
-using Sandbox.Graphics;
-using Sandbox.Common;
 using Sandbox.Game.World;
-using Sandbox.Game.Gui;
 using Sandbox.Game.Entities.Character;
 using VRage;
 
@@ -34,20 +26,14 @@ namespace Sandbox.Engine.Physics
 {
     //using MyHavokCluster = MyClusterTree<HkWorld>;
     using MyHavokCluster = MyClusterTree;
-    using Sandbox.ModAPI;
-    using Sandbox.Game.Entities.Cube;
     using Sandbox.Game.GameSystems;
     using Sandbox.Game.Multiplayer;
-    using VRage.Library.Utils;
     using System;
-    using Sandbox.Definitions;
     using VRage.ModAPI;
     using VRage.Game.Components;
-    using VRage.Trace;
     using VRage.Game.Entity;
     using Sandbox.Game.EntityComponents;
     using VRage.Game.ObjectBuilders.ComponentSystem;
-    using Sandbox.Game.EntityComponents.Systems;
 
     /// <summary>
     /// Abstract engine physics body object.

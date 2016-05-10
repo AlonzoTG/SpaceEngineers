@@ -454,7 +454,6 @@ namespace VRageRender
         /// <returns></returns>
         public override void DebugDraw()
         {
-            return;
             //if (MyMwcFinalBuildConstants.DrawHelperPrimitives)
             {
                 // DebugDrawVolume();

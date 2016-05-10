@@ -1,10 +1,5 @@
-﻿using Sandbox.ModAPI.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using VRage.ModAPI;
-using VRage.Game.Entity;
 using VRage.Game.ModAPI.Ingame;
 using VRage.Game.ModAPI.Interfaces;
 
@@ -19,8 +14,7 @@ namespace Sandbox.Game.Entities.Character
 
         void VRage.Game.ModAPI.Interfaces.IMyControllableEntity.DrawHud(IMyCameraController camera, long playerId)
         {
-            if (camera is IMyCameraController)
-                DrawHud(camera as IMyCameraController, playerId);
+                DrawHud(camera, playerId);
         }
 
         int IMyInventoryOwner.InventoryCount

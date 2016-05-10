@@ -1,17 +1,12 @@
 ﻿#region Using
 
 using Havok;
-using Sandbox.Common;
-
-using Sandbox.Common.ObjectBuilders;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
-using Sandbox.Engine.Voxels;
 using VRage.Groups;
 using Sandbox.Game.Gui;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Game.World;
-using Sandbox.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,16 +18,12 @@ using VRage.Collections;
 using VRage.Plugins;
 using VRageMath;
 using VRageRender;
-using Sandbox.ModAPI;
 using Sandbox.Game.Weapons;
 using VRage.Win32;
 using VRage.Utils;
 using VRage.ModAPI;
 using VRage.ObjectBuilders;
 using VRage.Game.Components;
-using System.Text;
-using Sandbox.Game.Components;
-using ParallelTasks;
 using Sandbox.Definitions;
 using VRage.Game.Entity;
 using VRage.Game;

@@ -1,14 +1,10 @@
-﻿using Sandbox.Engine.Utils;
-using Sandbox.Game;
+﻿using Sandbox.Game;
 using System;
-using System.Linq;
 using System.Diagnostics;
 using VRage;
-using VRage.Import;
 using VRage.Utils;
 using VRage.Voxels;
 using VRageMath;
-using VRageRender;
 using VRage.Native;
 using System.Collections.Generic;
 
@@ -282,7 +278,7 @@ namespace Sandbox.Engine.Voxels
             byte materialA = cache.Material(inputVoxelA.IdxInCache);
             byte materialB = cache.Material(inputVoxelB.IdxInCache);
 
-            if (Math.Abs(MyVoxelConstants.VOXEL_ISO_LEVEL - contentA) < 0.00001f)
+            if (Math.Abs(MyVoxelConstants.VOXEL_ISO_LEVEL - contentA) == 0)
             {
                 edge.Position = inputVoxelA.Position;
                 edge.Normal = inputVoxelA.Normal;
@@ -291,7 +287,7 @@ namespace Sandbox.Engine.Voxels
                 return;
             }
 
-            if (Math.Abs(MyVoxelConstants.VOXEL_ISO_LEVEL - contentB) < 0.00001f)
+            if (Math.Abs(MyVoxelConstants.VOXEL_ISO_LEVEL - contentB) == 0)
             {
                 edge.Position = inputVoxelB.Position;
                 edge.Normal = inputVoxelB.Normal;

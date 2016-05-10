@@ -1,6 +1,4 @@
-﻿using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Definitions;
+﻿using Sandbox.Definitions;
 using Sandbox.Engine.Platform.VideoMode;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.Entities;
@@ -15,7 +13,6 @@ using Sandbox.Game.World;
 using Sandbox.Graphics;
 using Sandbox.Graphics.GUI;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using VRage;
 using VRage.Game;
@@ -23,7 +20,6 @@ using VRage.Game.Entity;
 using VRage.Game.Gui;
 using VRage.Input;
 using VRage.Utils;
-using VRage.Voxels;
 using VRageMath;
 using VRageRender;
 using Color = VRageMath.Color;
@@ -470,7 +466,7 @@ namespace Sandbox.Game.Gui
 				gravityTextAlignment = MyGuiDrawAlignEnum.HORISONTAL_RIGHT_AND_VERTICAL_BOTTOM;
 				gravityNumberAlignment = MyGuiDrawAlignEnum.HORISONTAL_LEFT_AND_VERTICAL_BOTTOM;
 				totalGravityTextPos = backgroundPosition + backgroundSize * new Vector2(1 - 0.35f, -0.99f) + backgroundTexture.PaddingSizeGui * Vector2.UnitY * 0.2f;
-				totalGravityNumberPos = totalGravityNumberPos = totalGravityTextPos + new Vector2(0.0075f, 0.0025f);
+				totalGravityNumberPos = totalGravityTextPos + new Vector2(0.0075f, 0.0025f);
 				dividerLinePosition = new Vector2(backgroundPosition.X + backgroundTexture.PaddingSizeGui.X/2.0f, totalGravityTextPos.Y - 0.022f) + new Vector2(0.0f, 0.026f);
 
 				{

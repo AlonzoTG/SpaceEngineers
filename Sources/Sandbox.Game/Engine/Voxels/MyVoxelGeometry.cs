@@ -13,7 +13,7 @@ using Sandbox.Engine.Utils;
 
 namespace Sandbox.Engine.Voxels
 {
-    public partial class MyVoxelGeometry
+    public partial class MyVoxelGeometry : IDisposable
     {
         private static List<Vector3I> m_sweepResultCache = new List<Vector3I>();
         private static List<int> m_overlapElementCache = new List<int>();
@@ -307,10 +307,7 @@ namespace Sandbox.Engine.Voxels
 
                 // this should never happen
                 if (i >= cachedDataCell.VoxelTriangles.Length)
-                {
-                    Debug.Assert(i < cachedDataCell.VoxelTriangles.Length);
                     continue;
-                }
 
                 MyVoxelTriangle voxelTriangle = cachedDataCell.VoxelTriangles[i];
 
@@ -440,6 +437,11 @@ namespace Sandbox.Engine.Voxels
             m_isEmptyCache.Write(cacheKey, cacheLine);
 
             Debug.Assert(IsEmpty(ref cell) == value);
+        }
+
+        public void Dispose()
+        {
+            m_lock.Dispose();
         }
     }
 }

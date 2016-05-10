@@ -1,11 +1,5 @@
-﻿using Sandbox.Common.ObjectBuilders.Definitions;
-using Sandbox.Definitions;
-using Sandbox.Engine.Utils;
-using Sandbox.Game.Entities;
-using System;
-using System.Collections.Generic;
+﻿using Sandbox.Definitions;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using VRage;
 using VRage.Game;
@@ -170,8 +164,7 @@ namespace Sandbox.Game.AI.Pathfinding
             base.Init(ob);
 
             var objectBuilder = ob as MyObjectBuilder_BlockNavigationDefinition;
-            Debug.Assert(ob != null);
-            if (ob == null) return;
+            Debug.Assert(objectBuilder != null);
 
             if (objectBuilder.NoEntry || objectBuilder.Triangles == null)
             {

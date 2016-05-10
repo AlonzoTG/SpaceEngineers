@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Sandbox.Game.Entities
 {
+    [Flags]
     public enum MyTrashRemovalFlags : int
     {
         None = 0,

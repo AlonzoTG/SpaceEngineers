@@ -1,5 +1,4 @@
-﻿using Sandbox.Common;
-
+﻿
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Definitions;
 using Sandbox.Engine.Utils;
@@ -19,12 +18,9 @@ using Sandbox.ModAPI.Ingame;
 using Sandbox.Game.Localization;
 using VRage.Utils;
 using Sandbox.Game.Entities.Blocks;
-using Sandbox.ModAPI;
 using Sandbox.Graphics.GUI;
 using System;
 using Sandbox.Engine.Multiplayer;
-using SteamSDK;
-using ProtoBuf;
 using Sandbox.Game.Screens.Helpers;
 using System.Diagnostics;
 using Sandbox.Game.Entities.UseObject;
@@ -41,11 +37,8 @@ using VRage.Voxels;
 using Sandbox.Game.AI.Navigation;
 using VRage.Game;
 using VRage.Network;
-using VRage.Game.Components;
 using VRage.Game.Entity;
 using VRage.Game.ModAPI;
-using VRage.Game.ModAPI.Interfaces;
-using VRage.Game.Utils;
 
 namespace Sandbox.Game.Entities
 {
@@ -1849,14 +1842,7 @@ namespace Sandbox.Game.Entities
                 maxSpeed = maxSpeed * Math.Max(coeff, 0.05);
 
                 double dot = m_currentInfo.PlanetVector.Dot(m_currentInfo.PlanetVector);
-                double deltaH = m_currentInfo.Elevation - m_currentInfo.Elevation;
                 double deltaPSq = perpDelta.LengthSquared();
-
-                // Add height difference compensation on long distances (to avoid flying off the planet)
-                if (dot < 0.99 && deltaPSq > 100.0)
-                {
-                    m_dbgDeltaH = -deltaH * m_currentInfo.GravityWorld;
-                }
 
                 delta += m_dbgDeltaH;
 
@@ -1877,8 +1863,6 @@ namespace Sandbox.Game.Entities
 
             Vector3 localSpaceTargetDirection = Vector3.Transform(targetDirection, invWorldRot);
             Vector3 localSpaceVelocity = Vector3.Transform(velocity, invWorldRot);
-
-            thrustSystem.AutoPilotControlThrust = Vector3.Zero;
 
             Vector3 brakeThrust = thrustSystem.GetAutoPilotThrustForDirection(Vector3.Zero);
 
@@ -1912,6 +1896,10 @@ namespace Sandbox.Game.Entities
                 thrust.Normalize();
                 // becaouse of c# properties and structs 
                 thrustSystem.AutoPilotControlThrust = thrust;
+            }
+            else
+            {
+                thrustSystem.AutoPilotControlThrust = Vector3.Zero;
             }
         }
 

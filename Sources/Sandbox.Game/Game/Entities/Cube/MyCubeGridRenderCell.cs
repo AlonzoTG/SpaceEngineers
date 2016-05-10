@@ -48,7 +48,6 @@ namespace Sandbox.Game.Entities.Cube
         //static ModelId[][] m_cubeEdgeModelIds = MyCubeGridDefinitions.CubeEdgeModels.Select(s => s.Select(x => MyModel.GetId(x)).ToArray()).ToArray();
         //static ModelId[][] m_cubeHeavyEdgeModelIds = MyCubeGridDefinitions.CubeHeavyEdgeModels.Select(s => s.Select(x => MyModel.GetId(x)).ToArray()).ToArray();
 
-
         static List<MyCubeInstanceData> m_tmpInstanceData = new List<MyCubeInstanceData>(); // Merge instance data
         static Dictionary<ModelId, Tuple<List<MyCubeInstanceData>, MyInstanceInfo>> m_tmpInstanceParts = new Dictionary<ModelId, Tuple<List<MyCubeInstanceData>, MyInstanceInfo>>();
 

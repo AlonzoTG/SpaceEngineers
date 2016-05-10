@@ -2,10 +2,7 @@
 
 using Havok;
 using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
-using Sandbox.Engine.Models;
 using Sandbox.Engine.Multiplayer;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
@@ -24,8 +21,6 @@ using Sandbox.Game.SessionComponents;
 using Sandbox.Game.Weapons;
 using Sandbox.Game.World;
 using Sandbox.Graphics.GUI;
-using Sandbox.ModAPI;
-using Sandbox.ModAPI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,7 +42,6 @@ using VRage.Network;
 using Sandbox.Game.EntityComponents;
 using Sandbox.Game.Replication;
 using VRage.Library.Sync;
-using Sandbox.Game.Entities.Blocks;
 using VRage.Animations;
 using VRage.Game.Definitions.Animation;
 using VRage.Game.Gui;
@@ -58,11 +52,9 @@ using VRage.Import;
 using VRage.Game.ObjectBuilders.ComponentSystem;
 using VRage.Game;
 using VRage.Game.ModAPI.Ingame;
-using VRage.Serialization;
 using VRage.Game.ModAPI;
 using VRage.Game.ModAPI.Interfaces;
 using Sandbox.Game.Audio;
-using Sandbox.ModAPI.Ingame;
 using VRage.Game.ObjectBuilders;
 using Sandbox.Game.Screens;
 
@@ -1466,8 +1458,6 @@ namespace Sandbox.Game.Entities.Character
             {
                 if (!Sync.IsServer) return;
 
-                DamageImpactEnum damageImpact = DamageImpactEnum.NoDamage;
-
                 // Get the colliding object and skip collisions between characters
                 HkRigidBody collidingBody;
                 int collidingBodyIdx = 0;
@@ -1488,7 +1478,7 @@ namespace Sandbox.Game.Entities.Character
                     MyPhysicsDebugDraw.DrawCollisionShape(collidingBody.GetShape(), worldMatrix, 1, ref index, "hit");
                 }
 
-                damageImpact = GetDamageFromFall(collidingBody, collidingEntity, ref value);
+                DamageImpactEnum damageImpact = GetDamageFromFall(collidingBody, collidingEntity, ref value);
 
                 if (damageImpact != DamageImpactEnum.NoDamage) ApplyDamage(damageImpact, MyDamageType.Fall);
 
@@ -1631,7 +1621,7 @@ namespace Sandbox.Game.Entities.Character
         {
             if (weapon == null)
                 return;
-            if ((m_rightHandItemBone == -1 || weapon != null) && m_currentWeapon != null)
+            if (m_rightHandItemBone == -1 && m_currentWeapon != null)
             {
                 // First, dispose of the old weapon
                 DisposeWeapon();
@@ -5719,7 +5709,7 @@ namespace Sandbox.Game.Entities.Character
         {
             get
             {
-                return m_usingEntity as MyEntity;
+                return m_usingEntity;
             }
             set
             {
@@ -6725,7 +6715,7 @@ namespace Sandbox.Game.Entities.Character
 
             System.Diagnostics.Debug.Assert(character.GetInventory() as MyInventory != null, "Null or unexpected inventory type returned!");
             if (useInventory)
-                MyWorldGenerator.InitInventoryWithDefaults(character.GetInventory() as MyInventory);
+                MyWorldGenerator.InitInventoryWithDefaults(character.GetInventory() );
             else if (botDefinition != null)
             {
                 // use inventory from bot definition
@@ -8244,7 +8234,7 @@ namespace Sandbox.Game.Entities.Character
                 if (player != null)
                 {
                     MyPlayerCollection.ChangePlayerCharacter(player, this, this);
-                    if (m_usingEntity != null && player != null)
+                    if (m_usingEntity != null)
                     {
                         Sync.Players.SetControlledEntityLocally(player.Id, m_usingEntity);
                     }

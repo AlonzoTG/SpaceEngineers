@@ -927,7 +927,7 @@ namespace Sandbox.Game.Entities.Cube
             BoundingBoxD boundingBox = new BoundingBoxD(CubeGrid.GridIntegerToWorld(Min), CubeGrid.GridIntegerToWorld(Max));
             foreach (var item in m_tmpItemList)
             {
-                if(item.Amount < 0.01f)
+                if(item.Amount == 0)
                 {
                     continue;
                 }

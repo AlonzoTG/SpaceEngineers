@@ -1,23 +1,18 @@
 ﻿using Havok;
-using Sandbox.Common;
 using Sandbox.Engine.Physics;
 using Sandbox.Game;
 using Sandbox.Game.Entities;
 using Sandbox.Game.Entities.Character;
 using Sandbox.Game.World;
-using Sandbox.ModAPI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Sandbox.Game.Multiplayer;
-using VRage;
 using VRage.Game;
 using VRage.Game.Components;
 using VRage.Game.Entity;
 using VRage.Game.ModAPI.Interfaces;
 using VRage.Input;
 using VRage.ModAPI;
-using VRage.Utils;
 using VRageMath;
 
 namespace Sandbox.Engine.Utils
@@ -183,7 +178,7 @@ namespace Sandbox.Engine.Utils
         // Updates spectator position (spring connected to desired position)
         public override void UpdateAfterSimulation()
         {
-            Sandbox.Game.Entities.IMyControllableEntity genericControlledEntity = MySession.Static.ControlledEntity as Sandbox.Game.Entities.IMyControllableEntity;
+            Sandbox.Game.Entities.IMyControllableEntity genericControlledEntity = MySession.Static.ControlledEntity;
             if (genericControlledEntity == null)
                 return;
             var remotelyControlledEntity = genericControlledEntity as MyRemoteControl;
@@ -537,7 +532,7 @@ namespace Sandbox.Engine.Utils
             if (cameraController == null || !(cameraController is MyEntity))
                 return;
 
-            Sandbox.Game.Entities.IMyControllableEntity controlledEntity = MySession.Static.ControlledEntity as Sandbox.Game.Entities.IMyControllableEntity;
+            Sandbox.Game.Entities.IMyControllableEntity controlledEntity = MySession.Static.ControlledEntity;
             if (controlledEntity == null)
                 return;
 
@@ -666,7 +661,7 @@ namespace Sandbox.Engine.Utils
             if (!headAngle.HasValue)
                 return false;
 
-            Sandbox.Game.Entities.IMyControllableEntity controlledEntity = MySession.Static.ControlledEntity as Sandbox.Game.Entities.IMyControllableEntity;
+            Sandbox.Game.Entities.IMyControllableEntity controlledEntity = MySession.Static.ControlledEntity;
             if (controlledEntity == null)
                 return false;
 

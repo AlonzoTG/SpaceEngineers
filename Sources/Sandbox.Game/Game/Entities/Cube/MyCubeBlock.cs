@@ -3,29 +3,25 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sandbox.Common.ObjectBuilders;
 using Sandbox.Definitions;
+using Sandbox.Engine.Physics;
 
 using VRageMath;
 using Sandbox.Game.World;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.Entities.Cube;
 using System.Diagnostics;
-using Sandbox.Engine.Physics;
 using System.Linq;
 using VRage.Import;
-using Sandbox.Common;
 using Sandbox.Game.Multiplayer;
 using VRage;
 using Sandbox.Game.Components;
-using Sandbox.ModAPI;
 using VRage.Collections;
 using VRage.ModAPI;
 using VRage.ObjectBuilders;
 using VRage.Game.Components;
 using VRage.Game.Entity.UseObject;
 using Sandbox.Game.EntityComponents;
-using Sandbox.Engine.Multiplayer;
 using VRage.Game.Entity;
 using VRage.Game;
 using VRage.Game.ModAPI;
@@ -90,8 +86,7 @@ namespace Sandbox.Game.Entities
 
             return faction.Tag;
         }
-
-
+        
         public VRage.Game.MyRelationsBetweenPlayerAndBlock GetUserRelationToOwner(long identityId)
         {
             if (!MyFakes.SHOW_FACTIONS_GUI)
@@ -415,7 +410,7 @@ namespace Sandbox.Game.Entities
             // Ensure that if we went from not serializing to serializing, we have a valid entity id.
             if (builder.EntityId == 0)
                 EntityId = MyEntityIdentifier.AllocateId();
-            else if (builder.EntityId != 0)
+            else
                 EntityId = builder.EntityId;
 
             NumberInGrid = cubeGrid.BlockCounter.GetNextNumber(builder.GetId());

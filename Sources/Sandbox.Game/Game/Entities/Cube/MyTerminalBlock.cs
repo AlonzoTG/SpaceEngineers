@@ -1,25 +1,15 @@
-﻿using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Engine.Multiplayer;
+﻿using Sandbox.Engine.Multiplayer;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.Components;
 using Sandbox.Game.Entities.Inventory;
 using Sandbox.Game.Gui;
 using Sandbox.Game.Localization;
-using Sandbox.Game.Multiplayer;
 using Sandbox.Game.World;
-using Sandbox.Graphics.GUI;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using VRage;
 using VRage.Network;
-using VRageMath;
-using VRageRender;
-using VRage.ModAPI;
 using VRage.Game;
 using VRage.Game.Gui;
 using VRage.Game.Entity;
@@ -302,7 +292,7 @@ namespace Sandbox.Game.Entities.Cube
                 OffsetText = true,
                 TargetMode = GetPlayerRelationToOwner(),
                 Entity = this,
-                BlinkingTime = allowBlink && IsBeingHacked ? MyGridConstants.HACKING_INDICATION_TIME_MS / 1000 : 0
+                BlinkingTime = allowBlink && IsBeingHacked ? (float)MyGridConstants.HACKING_INDICATION_TIME_MS / 1000 : 0
             });
 
             return m_hudParams;

@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using VRageMath;
 using VRage.Plugins;
-using Sandbox.Engine.Utils;
 using System.Diagnostics;
 using VRage.ObjectBuilders;
 using VRage;
-using System.Reflection;
 using VRage.Library.Utils;
 using Sandbox.Definitions;
 using VRage.Utils;
-using Sandbox.ModAPI;
 using VRage.Game;
 using VRage.Voxels;
 using VRage.Game.Common;
@@ -310,7 +301,6 @@ namespace Sandbox.Game.World
                 var ob = builder as MyObjectBuilder_WorldGeneratorOperation_CreatePlanet;
 
                 DefinitionName = ob.DefinitionName;
-                DefinitionName = ob.DefinitionName;
                 AddGPS = ob.AddGPS;
                 Diameter = ob.Diameter;
                 PositionMinCorner = ob.PositionMinCorner;
@@ -321,7 +311,6 @@ namespace Sandbox.Game.World
             {
                 var ob = base.GetObjectBuilder() as MyObjectBuilder_WorldGeneratorOperation_CreatePlanet;
 
-                ob.DefinitionName = DefinitionName;
                 ob.DefinitionName = DefinitionName;
                 ob.AddGPS = AddGPS;
                 ob.Diameter = Diameter;

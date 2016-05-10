@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using ProtoBuf;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
 using Sandbox.Game.Entities.Cube;
 using VRage.Collections;
@@ -13,11 +9,9 @@ using VRageMath;
 using VRage.Game.Components;
 using VRage.ObjectBuilders;
 using VRage;
-using Sandbox.Common;
 using VRage.Utils;
 using Sandbox.Game.Components;
 using Sandbox.Engine.Utils;
-using Sandbox.Engine.Models;
 using VRage.Game;
 using VRage.Game.ModAPI;
 using VRage.Import;
@@ -189,8 +183,6 @@ namespace Sandbox.Game.Entities
                     ++counter;
                 }
             }
-
-            Debug.Assert(objectBuilder.Blocks == null && objectBuilder.BlockIds == null || objectBuilder.Blocks.Length == objectBuilder.BlockIds.Length);
 
             return objectBuilder;
         }

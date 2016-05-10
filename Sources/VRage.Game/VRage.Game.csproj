@@ -90,7 +90,7 @@
     <Reference Include="HavokWrapper">
       <SpecificVersion>False</SpecificVersion>
       <HintPath Condition="exists('$(HavokWrapperFullPath)')">$(HavokWrapperFullPath)</HintPath>
-      <HintPath Condition="!exists('$(HavokWrapperFullPath)')">$(HavokWrapperFullPath2)</HintPath>
+      <HintPath Condition="!exists('$(HavokWrapperFullPath)')">..\..\..\..\Projects\SpaceEngineers\3rd\HavokWrapper_SE\release\x86_64\HavokWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

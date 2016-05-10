@@ -1,11 +1,6 @@
 ﻿using Sandbox.Game.World;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using VRage;
 using VRage.Audio;
-using VRage.Data;
 using VRage.Data.Audio;
 using VRage.Game;
 using VRage.Library.Utils;
@@ -97,7 +92,7 @@ namespace Sandbox.Game.Entities.Character
 
         public void Update(bool force=false)
         {
-            if (!Sandbox.Game.World.MySession.Static.Settings.RealisticSound || MySession.Static == null || MySession.Static.LocalCharacter != m_character)
+            if ( MySession.Static == null || !Sandbox.Game.World.MySession.Static.Settings.RealisticSound || MySession.Static.LocalCharacter != m_character)
                 return;
 
             if (CurrentState == State.Heated)

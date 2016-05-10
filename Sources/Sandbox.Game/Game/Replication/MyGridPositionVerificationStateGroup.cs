@@ -1,10 +1,5 @@
 ﻿using Sandbox.Game.Entities;
-using Sandbox.Game.Entities.Character;
 using Sandbox.Game.World;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using VRageMath;
 
 namespace Sandbox.Game.Replication
@@ -32,8 +27,7 @@ namespace Sandbox.Game.Replication
                 {
                   
                     stream.WriteBool(controller != null);
-                    if (controller != null)
-                    {
+
                         stream.WriteInt64(controller.EntityId);
 
                         Vector2 rotation = controller.RotationIndicator;
@@ -46,7 +40,6 @@ namespace Sandbox.Game.Replication
                         stream.WriteHalf(position.X);
                         stream.WriteHalf(position.Y);
                         stream.WriteHalf(position.Z);
-                    }
                 }
             }
 

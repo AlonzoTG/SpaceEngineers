@@ -1,7 +1,5 @@
 ﻿using System;
-using Sandbox.Common;
 using Sandbox.Engine.Physics;
-using Sandbox.Engine.Utils;
 using Sandbox.Game.Entities;
 using Sandbox.Game.Utils;
 using Sandbox.Game.World;
@@ -12,12 +10,8 @@ using Sandbox.Game.Entities.Character;
 using Sandbox.Game.Entities.Cube;
 using Sandbox.Game.Entities.EnvironmentItems;
 using Sandbox.Game.Multiplayer;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using VRage;
 using Sandbox.Definitions;
-using Sandbox.ModAPI;
-using Sandbox.ModAPI.Interfaces;
-using VRage.Library.Utils;
 using VRage.ModAPI;
 using VRage.Game.Components;
 using System.Collections.Generic;
@@ -222,9 +216,6 @@ namespace Sandbox.Game.Weapons
 
             m_position = hitPosition;
 
-            bool isProjectileGroupKilled = false;
-
-            if (!isProjectileGroupKilled)
             {
                 MySurfaceImpactEnum surfaceImpact;
                 MyStringHash materialType;
@@ -265,8 +256,6 @@ namespace Sandbox.Game.Weapons
             hitHead = false;
 
             // 1. rough raycast
-            if (entity == null)
-            {
                 ProfilerShort.Begin("MyGamePruningStructure::CastProjectileRay");
                 MyPhysics.HitInfo? hitInfo = MyPhysics.CastRay(line.From, line.To, MyPhysics.CollisionLayers.DefaultCollisionLayer);
                 ProfilerShort.End();
@@ -276,7 +265,6 @@ namespace Sandbox.Game.Weapons
                     hitPosition = hitInfo.Value.Position;
                     hitNormal = hitInfo.Value.HkHitInfo.Normal;
                 }
-            }
 
             // 2. prevent shooting through characters, retest trajectory between entity and player
             if (!(entity is MyCharacter) || entity == null)

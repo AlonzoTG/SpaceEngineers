@@ -702,16 +702,9 @@ namespace Sandbox.Game.AI
                     return false;
                 }
             }
-            else if (memoryTarget.TargetType == MyAiTargetEnum.NO_TARGET)
-            {
+            else {
                 UnsetTarget();
                 return true;
-            }
-            else
-            {
-                Debug.Assert(false, "Unrecognized type of target!");
-                UnsetTarget();
-                return false;
             }
         }
 
@@ -744,10 +737,8 @@ namespace Sandbox.Game.AI
                 {
                     m_currentTarget = MyAiTargetEnum.ENVIRONMENT_ITEM;
                 }
-                else if (entity is MyEntity)
-                {
+                else 
                     m_currentTarget = MyAiTargetEnum.ENTITY;
-                }
             }
         }
 
@@ -861,15 +852,10 @@ namespace Sandbox.Game.AI
             Debug.Assert(HasTarget());
             if (!HasTarget()) return Vector3D.Zero;
 
-            if (m_currentTarget == MyAiTargetEnum.POSITION)
-            {
+            if (m_currentTarget == MyAiTargetEnum.POSITION ||
+                m_currentTarget == MyAiTargetEnum.ENVIRONMENT_ITEM)
                 return m_targetPosition;
-            }
-            else if (m_currentTarget == MyAiTargetEnum.ENVIRONMENT_ITEM)
-            {
-                return m_targetPosition;
-            }
-            else
+
             {
                 Vector3D target = m_targetEntity.PositionComp.GetPosition();
 

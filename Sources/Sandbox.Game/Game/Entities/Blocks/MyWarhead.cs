@@ -2,35 +2,20 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using Havok;
-using Sandbox.Common;
 
 using Sandbox.Common.ObjectBuilders;
 using Sandbox.Definitions;
-using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
-using Sandbox.Game.Debugging;
-using Sandbox.Game.GameSystems.Electricity;
 using Sandbox.Game.GameSystems;
 
 using VRage.Utils;
-using VRage.Trace;
 using VRageMath;
-using Sandbox.Game.Weapons;
 using Sandbox.Game.Entities.Debris;
 using Sandbox.Game.World;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Game.Gui;
 using Sandbox.Engine.Multiplayer;
-using Sandbox.Common.ObjectBuilders.Definitions;
-using SteamSDK;
-using Sandbox.ModAPI;
 using Sandbox.ModAPI.Ingame;
-using Sandbox.ModAPI.Interfaces;
 using Sandbox.Game.Localization;
 using VRage.Game.Entity;
 using VRage;
@@ -538,7 +523,7 @@ namespace Sandbox.Game.Entities.Cube
             get { return UseDamageSystem; }
         }
 
-        public float DetonationTime { get { return Math.Max(m_countdownMs, 1000) / 1000; } }
+        public float DetonationTime { get { return (float)Math.Max(m_countdownMs, 1000) / 1000; } }
         bool IMyWarhead.IsCountingDown { get { return IsCountingDown; } }
         float IMyWarhead.DetonationTime { get { return DetonationTime; } }
     }

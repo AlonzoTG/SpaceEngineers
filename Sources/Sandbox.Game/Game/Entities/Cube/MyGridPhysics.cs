@@ -1,8 +1,5 @@
 ﻿#region Usings
 using Havok;
-using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
 using Sandbox.Engine.Physics;
 using Sandbox.Engine.Utils;
@@ -11,24 +8,16 @@ using Sandbox.Game.Entities.Debris;
 using Sandbox.Game.GameSystems;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Game.World;
-using Sandbox.ModAPI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using VRage;
 using VRage.Collections;
 using VRage.Utils;
 using VRageMath;
 using VRageRender;
 using VRage.Game.Components;
-using VRage.ModAPI;
 using Sandbox.Game.Entities.EnvironmentItems;
-using Sandbox.Game.Components;
-using Sandbox.Engine.Voxels;
-using Sandbox.Game.EntityComponents;
-using Sandbox.Game.Replication;
 using VRage.Game.Entity;
 using VRage.Game;
 using VRage.Game.ModAPI;
@@ -548,7 +537,7 @@ namespace Sandbox.Game.Entities.Cube
                     var gp = node.Physics as MyGridPhysics;
                     if (gp == null || gp.Entity.PositionComp.WorldAABB.Contains(pt.ContactPosition) == ContainmentType.Disjoint)
                         continue;
-                    destroyed |= gp.PerformDeformation(ref pt, false, separatingVelocity, other as MyEntity);
+                    destroyed |= gp.PerformDeformation(ref pt, false, separatingVelocity, other);
                 }
                 m_tmpEntities.Clear();
             }

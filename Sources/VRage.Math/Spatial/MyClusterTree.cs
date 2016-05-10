@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using VRage.Collections;
-using VRage.Library.Collections;
 
 namespace VRageMath.Spatial
 {
     //Leave it for final because of edit and continue
     //public class MyClusterTree<T> where T: class
-    public class MyClusterTree
+    public class MyClusterTree : IDisposable
     {
         #region Events
 
@@ -174,7 +172,6 @@ namespace VRageMath.Spatial
             if (m_returnedClusters.Count > 1)
                 needReorder = true;
             else
-                if (m_returnedClusters.Count == 0)
                 {
                     if (SingleCluster.HasValue)
                         return VRageMath.Spatial.MyClusterTree.CLUSTERED_OBJECT_ID_UNITIALIZED;
@@ -213,7 +210,7 @@ namespace VRageMath.Spatial
                 StaticId = staticObjectId
             };
 
-            System.Diagnostics.Debug.Assert(!needReorder || (!SingleCluster.HasValue && needReorder), "Object cannot be added outside borders of a single cluster");
+            System.Diagnostics.Debug.Assert(!needReorder || !SingleCluster.HasValue, "Object cannot be added outside borders of a single cluster");
 
             if (needReorder && !SingleCluster.HasValue)
             {

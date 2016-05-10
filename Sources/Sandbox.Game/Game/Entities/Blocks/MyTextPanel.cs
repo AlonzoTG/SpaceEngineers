@@ -19,8 +19,6 @@ using VRageMath;
 using VRage.Utils;
 using VRage.Game.Entity.UseObject;
 using VRage.ModAPI;
-using VRage.Library.Utils;
-using VRage.Game.Components;
 using VRage.Game.GUI.TextPanel;
 using VRage.Network;
 using Sandbox.Engine.Multiplayer;
@@ -869,10 +867,7 @@ namespace Sandbox.Game.Entities.Blocks
                         break;
                     case VRage.Game.MyRelationsBetweenPlayerAndBlock.NoOwnership:
                     case VRage.Game.MyRelationsBetweenPlayerAndBlock.FactionShare:
-                        if (OwnerId == 0 && IsAccessibleForOnlyOwner)
-                            OnOwnerUse(actionEnum, user);
-                        else
-                            OnFactionUse(actionEnum, user);
+                        OnFactionUse(actionEnum, user);
                         break;
                     case VRage.Game.MyRelationsBetweenPlayerAndBlock.Owner:
                         OnOwnerUse(actionEnum, user);

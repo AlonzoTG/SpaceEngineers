@@ -1,32 +1,18 @@
-﻿using ProtoBuf;
-using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
-using Sandbox.Definitions;
-using Sandbox.Engine.Multiplayer;
+﻿using Sandbox.Engine.Multiplayer;
 using Sandbox.Engine.Utils;
-using Sandbox.Engine.Voxels;
 using Sandbox.Game.Entities;
 using Sandbox.Game.Localization;
 using Sandbox.Game.Multiplayer;
 using Sandbox.Game.World;
-using Sandbox.Game.World.Generator;
 using Sandbox.Graphics;
 using Sandbox.Graphics.GUI;
-using SteamSDK;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography;
 using System.Text;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using VRage;
 using VRage.Input;
 using VRage.Utils;
-using VRage.Voxels;
 using VRageMath;
-using VRage.Library.Utils;
-using VRage.FileSystem;
-using VRage.ObjectBuilders;
 using VRage.Network;
 using Sandbox.Game.Entities.Character;
 using VRage.Game;
@@ -390,10 +376,7 @@ namespace Sandbox.Game.Gui
 
         void OnEntityRemoveClicked(MyTrashRemovalOperation operation)
         {
-            if (m_attachCamera != null)
-            {
                 MyMultiplayer.RaiseStaticEvent(x => RemoveEntity_Implementation, m_attachCamera, operation);
-            }
         }
 
         [Event, Reliable, Server]

@@ -1,9 +1,7 @@
 ﻿#region Using
 
 using System;
-using Sandbox.Common;
 using Sandbox.Common.ObjectBuilders;
-using Sandbox.Common.ObjectBuilders.Definitions;
 using Sandbox.Definitions;
 using Sandbox.Engine.Utils;
 using Sandbox.Game.Entities;
@@ -14,8 +12,6 @@ using Sandbox.Game.Multiplayer;
 using Sandbox.Game.Utils;
 using Sandbox.Game.World;
 using Sandbox.Game.GameSystems;
-using Sandbox.ModAPI;
-using System.Collections.Generic;
 using VRage.Input;
 using VRage.ObjectBuilders;
 using VRage.Utils;
@@ -171,7 +167,7 @@ namespace Sandbox.Game.Weapons
 
         protected override MatrixD GetEffectMatrix(float muzzleOffset)
         {
-            if (m_raycastComponent.HitCubeGrid == null || m_raycastComponent.HitBlock == null || !(Owner is MyCharacter))
+            if (m_raycastComponent.HitCubeGrid == null || m_raycastComponent.HitBlock == null )
             {
                 return MatrixD.CreateWorld(m_gunBase.GetMuzzleWorldPosition(), WorldMatrix.Forward, WorldMatrix.Up);
             }

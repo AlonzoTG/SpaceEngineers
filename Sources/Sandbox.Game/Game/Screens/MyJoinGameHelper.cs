@@ -1,7 +1,5 @@
 ﻿#region Using
 
-using Sandbox.Common;
-using Sandbox.Common.ObjectBuilders;
 using Sandbox.Engine.Multiplayer;
 using Sandbox.Engine.Networking;
 using Sandbox.Engine.Utils;
@@ -354,7 +352,7 @@ namespace Sandbox.Game.Gui
                 {
                     if (MyFakes.ENABLE_JOIN_STARTED_BATTLE)
                     {
-                        status = status = MyTexts.GetString(MyCommonTexts.MultiplayerErrorSessionEnded);
+                        status = MyTexts.GetString(MyCommonTexts.MultiplayerErrorSessionEnded);
                         statusFullMessage = true;
                     }
                     else
